@@ -76,3 +76,14 @@ npm run dev
   `backend/app/routers/<模块>.py`，业务规则在 `backend/app/services/<模块>.py`。
 - 列表接口统一返回 `{ items, total, page, size }`，动作接口统一返回 `{ ok, message }`。
 - 状态流转只允许在 `app/services` 里改，路由层不做业务判断。
+
+## 测试
+
+后端用 pytest 验证业务规则（杂草清除的状态流转、幂等安排、待复核清单与看板口径见
+`backend/tests/test_weed.py`）：
+
+```bash
+cd backend
+python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+PYTHONPATH=. .venv/bin/python -m pytest tests/ -q
+```
